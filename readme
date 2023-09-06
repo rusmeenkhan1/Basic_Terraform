@@ -1,0 +1,19 @@
+
+# terraform
+
+IAC tool
+Declarative -> means you define what you want . 
+
+parts of terraform
+
+1) core ->
+    
+   tf-config
+   state
+
+
+2) provider -> 
+   Iaas  (aws,gcp,azure)
+   Paas  (kubernetes) -> service, namespace,  
+   Saas  (Fastly)
+
