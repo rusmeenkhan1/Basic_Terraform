@@ -1,1 +1,1 @@
-cidr_block = "10.100.0.0/16"
+cidr_block = {cidr:"10.100.0.0/16",name:"prd_vpc"}

@@ -5,13 +5,19 @@ provider aws {
 
 variable "cidr_block" {
   description = "cidr for vpc"
+ 
+  # if no value is passed then it will create with default value
+
+  default = {cidr:"10.0.0.0/16",name:"default"}
 }
 
 
-resource "aws_vpc" "dev_vpc" {
-  cidr_block = var.cidr_block
+resource "aws_vpc" "vpc" {
+  cidr_block = var.cidr_block.cidr
   
   tags = {
-    Name = "vpc_1"
+    Name = var.cidr_block.name
   }
 }
+
+
