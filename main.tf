@@ -4,6 +4,8 @@ variable "subnet_cidr" {}
 variable "ami" {}
 variable "instance_type" {}
 
+variable "private_key_path" {}
+
 resource "aws_vpc" "primary" {
   cidr_block = var.vpc_cidr
 
@@ -100,14 +102,42 @@ resource "aws_instance" "nginx_server" {
     Name = "nginx_server"
     description = "Ec2 server for demo project"
   }
+  
+  # this will run on local where terraform is running. Not on ec2
+  # this will run after instance creation/resource creation
+  provisioner "local-exec" {
+    command = "echo 'local provisioner'"
+    
+  }
 
+  connection  {
+    type = "ssh"
+    user = "ec2-user"
+    host = self.public_ip
+    private_key = file(var.private_key_path)
+  }
 
-  user_data = <<-EOF
-                 #!/bin/bash
-                 sudo yum update -y && sudo yum install docker -y
-                 sudo systemctl start docker 
-                 sudo usermod -aG docker ec2-user
-                 sudo service docker start
-                 sudo docker run -p 8080:80 nginx
-             EOF
+  # this will run on ec2 that is newly created
+  # this will run after instance creation/resource creation
+  # for running remote provisioner we need to connect to vm using ssh
+  provisioner "remote-exec" {
+     
+     # we can run using inline or direclty pass a file
+     #inlinline = [ 
+     #   "mkdir '/home/ec2-user/demo'"
+      #]
+
+    # it will run this script on remote server
+    script = "start.sh"
+  }
+  
+
+  # used for copying file or content from local to remote server
+  provisioner "file" {
+
+    source = "readme"
+    destination = "/home/ec2-user/readme"
+
+    
+  }
 }
