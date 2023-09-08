@@ -1,6 +1,1 @@
 
-In this setup we have created single  main.tf file and we are using same for creating resources 
-in different different env's just by passing different variable files
-
-terraform apply -var-file terraform_prd.tfvars
-
