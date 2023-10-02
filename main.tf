@@ -22,3 +22,18 @@ module "nginx_server" {
   vpc_id = aws_vpc.primary.id
   subnet_id = module.primary_subnet.subnet_id.id
 }
+
+resource "aws_instance" "demo" {
+  # (resource arguments)
+ ami = "ami-067c21fb1979f0b27"
+ instance_type = "t3.micro"
+}
+
+resource "aws_instance" "test" {
+  # (resource arguments)
+ ami = "ami-067c21fb1979f0b27"
+ instance_type = "t3.micro"
+ tags = {
+     "Name": "test"
+ }
+}

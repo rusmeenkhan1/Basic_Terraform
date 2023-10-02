@@ -1,7 +1,7 @@
 
 
 resource "aws_key_pair" "nginx_server_key" {
-  key_name   = "nginx_server_key"
+  key_name   = "nginx__key"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCMDuvDMLzBBfOEBFR9AC5zS5uuZm0uuBGAd0QLcaL3ZHuQP7igrqdnSC0B2Uuz/oc1qmHYX9yLNlaIBprs94ReEQkg8gT1uN5r0L+avQbIlMszWOhmwGlDF85pNimSDJj4cq/MkjmOkyNhLYe7kUMELZKUEt4Q2sJyPY7qxRgX7WMbGG8pmzGg36D9TA8OUXovo8Cc5B6bG/EzMEg+gDV76iV76tPjZMvrGIFLX4CjG5IFUdFPveRQeTUqBcTS5JMsSSM7fFBiMg34bvkYcIZRG2M61qGw3DX9Ipv6n/h7rmzcw/rDA0iuROVmVeAe7+lMLfWtJ4Sq/EAq1Rb9X7uJlwY0Dn0xT/pXCyObylUykuZUb7IbyEdBiuidhT2j68BST/k2FjEVKvVa0EPE1QGAdIfbviMNXmbk8BOZQQU8H5lEukv+E2mM/bQ9f4UUmTuMsp4BtWlvmMH+KOqcO3E21lnMbAXSJkxI/rC/p4kR1eO+qBsUekfL8rI2VUAUXc= rusmeen.khan@mac-HVJQKCWPDX"
 }
 
@@ -13,7 +13,7 @@ resource "aws_security_group" "ssh_sg" {
         from_port        = 22
         to_port          = 22
         protocol         = "tcp"
-        cidr_blocks      = ["223.190.83.113/32"]
+        cidr_blocks      = ["0.0.0.0/0"]
   }
       ingress {
         description      = "nginx ui"

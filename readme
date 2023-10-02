@@ -1,1 +1,17 @@
 
+Firstly create a VM automatically that is not managed thorugh terraform
+copy the instance id of the resource 
+
+now create a resource section in main.tf file 
+
+now run:
+a) terraform import aws_instance.test instance_id 
+
+
+resource "aws_instance" "test"{
+    ami = ""
+    instance_type = ""
+}
+
+once import worked fine. copy the ami_id and instance_type and try terraform plan 
+
